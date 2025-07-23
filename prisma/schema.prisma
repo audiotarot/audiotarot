@@ -8,14 +8,13 @@ datasource db {
 }
 
 model Suggestion {
-  id        Int      @id @default(autoincrement())
-  cardSlug  String   // e.g. "the-fool"
-  trackId   String   // Spotify ID
+  id        Int     @id @default(autoincrement())
+  cardSlug  String
+  trackId   String
   trackName String
   artist    String
   image     String
   url       String
-  upvotes   Int      @default(0)
-  downvotes Int      @default(0)
-  createdAt DateTime @default(now())
+  upvotes   Int     @default(0)
+  downvotes Int     @default(0)
 }

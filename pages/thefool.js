@@ -7,7 +7,6 @@ export default function TheFool() {
   const [results, setResults] = useState([])
   const [suggestions, setSuggestions] = useState([])
 
-  // 1) Fetch existing suggestions on mount
   useEffect(() => {
     fetch('/api/suggestions')
       .then((res) => res.json())
@@ -15,7 +14,6 @@ export default function TheFool() {
       .catch(console.error)
   }, [])
 
-  // 2) Search Spotify
   const handleSearch = async () => {
     try {
       const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
@@ -28,7 +26,6 @@ export default function TheFool() {
     }
   }
 
-  // 3) Suggest a song (persist to your DB)
   const handleSuggest = async (track) => {
     try {
       const res = await fetch('/api/suggestions', {
@@ -38,6 +35,8 @@ export default function TheFool() {
           trackId: track.id,
           trackName: track.name,
           artist: track.artists[0].name,
+          image: track.album.images[0]?.url || '',
+          url: track.external_urls.spotify,
         }),
       })
       if (!res.ok) throw new Error('Suggest failed')
@@ -54,7 +53,6 @@ export default function TheFool() {
     <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
       <h1>The Fool</h1>
 
-      {/* Authentication */}
       {!session ? (
         <>
           <p>Please sign in to suggest songs.</p>
@@ -64,7 +62,6 @@ export default function TheFool() {
         <>
           <p>Welcome, {session.user.name}</p>
 
-          {/* Search bar */}
           <div style={{ margin: '1rem 0' }}>
             <input
               type="text"
@@ -78,7 +75,6 @@ export default function TheFool() {
             </button>
           </div>
 
-          {/* Search results */}
           <div style={{ display: 'grid', gap: '1rem' }}>
             {results.map((track) => (
               <div
@@ -106,19 +102,22 @@ export default function TheFool() {
             ))}
           </div>
 
-          {/* Divider */}
           <hr style={{ margin: '2rem 0' }} />
 
-          {/* Community Suggestions */}
           <h2>Community Suggestions</h2>
           {suggestions.length === 0 && <p>No suggestions yet. Be the first!</p>}
-          <ul>
+          <div style={{ display: 'grid', gap: '1rem' }}>
             {suggestions.map((s) => (
-              <li key={s.id} style={{ marginBottom: '0.8rem' }}>
-                <strong>{s.trackName}</strong> by {s.artist}
-              </li>
+              <div key={s.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <img src={s.image} alt={s.trackName} style={{ width: '64px', height: '64px', borderRadius: '8px' }} />
+                <div>
+                  <strong>{s.trackName}</strong> by {s.artist}
+                  <br />
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">🎧 Listen on Spotify</a>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </>
       )}
     </main>

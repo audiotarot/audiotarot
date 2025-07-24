@@ -99,7 +99,7 @@ export default function TheFool() {
         </p>
 
         <h2>🎵 Featured Lyric</h2>
-        <blockquote style={{ borderLeft: '3px solid #666', paddingLeft: '12px', color: '#666', fontStyle: 'italic', fontFamily: ''Courier New', Courier, monospace' }}>
+        <blockquote style={{ borderLeft: '3px solid #666', paddingLeft: '12px', color: '#666', fontStyle: 'italic', fontFamily: '"Courier New", Courier, monospace' }}>
           Trancin&#39; round a field of joy<br />
           I change from girl to boy<br />
           Can you deliver fun from cruel?<br />

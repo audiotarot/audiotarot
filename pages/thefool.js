@@ -64,14 +64,14 @@ export default function TheFool() {
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+    <main style={{ fontFamily: '"Courier New", Courier, monospace', color: '#fff', backgroundColor: '#000' }}>
       {/* Static content from Squarespace page */}
       <section>
         <h3>O. The Fool</h3>
         <img
           src="https://images.squarespace-cdn.com/content/v1/5a43db3ea9db09f77e907232/1540695253539-552A57S83RXTI6CSNFV0/thefool.jpg?format=1000w"
           alt="silhouette of a person leaping between cliffs above the ocean at sunrise"
-          style={{ width: '100%', borderRadius: '8px' }}
+          style={{ width: '100%' }}
         />
 
         <h2>🔑 Keywords</h2>
@@ -99,14 +99,7 @@ export default function TheFool() {
         </p>
 
         <h2>🎵 Featured Lyric</h2>
-        <blockquote
-          style={{
-            borderLeft: '3px solid #666',
-            paddingLeft: '12px',
-            color: '#666',
-            fontStyle: 'italic',
-          }}
-        >
+        <blockquote style={{ borderLeft: '3px solid #666', paddingLeft: '12px', color: '#666', fontStyle: 'italic', fontFamily: ''Courier New', Courier, monospace' }}>
           Trancin&#39; round a field of joy<br />
           I change from girl to boy<br />
           Can you deliver fun from cruel?<br />
@@ -116,21 +109,16 @@ export default function TheFool() {
 
         <h2>🎧 Spotify Playlist</h2>
         <iframe
-          style={{ borderRadius: '12px' }}
           src="https://open.spotify.com/embed/playlist/6SDEqI9bMngBcL6DKuWqBv?utm_source=generator"
           width="100%"
           height="152"
           frameBorder="0"
           allow="encrypted-media"
-        ></iframe>
+        />
 
         <h2>🍎 Apple Music</h2>
         <p>
-          <a
-            href="https://music.apple.com/us/playlist/0-the-fool/pl.u-XzjEt4L8KmL"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://music.apple.com/us/playlist/0-the-fool/pl.u-XzjEt4L8KmL" target="_blank" rel="noopener noreferrer">
             Open in Apple Music →
           </a>
         </p>
@@ -152,81 +140,45 @@ export default function TheFool() {
         <>
           <p>Welcome, {session.user.name}</p>
 
-          <div style={{ margin: '1rem 0' }}>
-            <input
-              type="text"
-              placeholder="Search for a song..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              style={{ padding: '0.5rem', width: '60%' }}
-            />
-            <button onClick={handleSearch} style={{ marginLeft: '0.5rem' }}>
-              Search
-            </button>
-          </div>
+          <input
+            type="text"
+            placeholder="Search for a song..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
 
-          <div style={{ display: 'grid', gap: '1rem' }}>
-            {results.map((track) => (
-              <div
-                key={track.id}
-                style={{
-                  border: '1px solid #ddd',
-                  borderRadius: '8px',
-                  padding: '1rem',
-                }}
-              >
-                <p>
-                  <strong>{track.name}</strong> by {track.artists[0].name}
-                </p>
-                <button onClick={() => handleSuggest(track)}>
-                  Suggest this song
-                </button>
-              </div>
-            ))}
-          </div>
+          {results.map((track) => (
+            <div key={track.id}>
+              <strong>{track.name}</strong> by {track.artists[0].name}
+              <button onClick={() => handleSuggest(track)}>Suggest</button>
+            </div>
+          ))}
 
-          <hr style={{ margin: '2rem 0' }} />
+          <hr />
 
           <h2>Community Suggestions</h2>
           {suggestions.length === 0 && <p>No suggestions yet.</p>}
 
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {suggestions.map((s) => (
-              <div
-                key={s.id}
-                style={{
-                  border: '1px solid #ddd',
-                  borderRadius: '8px',
-                  padding: '1rem',
-                  display: 'flex',
-                  gap: '1rem',
-                  alignItems: 'center',
-                }}
-              >
-                <img
-                  src={s.image}
-                  alt={s.trackName}
-                  style={{ width: 64, height: 64, borderRadius: 4 }}
-                />
-                <div style={{ flex: 1 }}>
-                  <strong>{s.trackName}</strong> by {s.artist}
-                  <br />
-                  <iframe
-                    src={`https://open.spotify.com/embed/track/${s.trackId}`}
-                    width="300"
-                    height="80"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                  ></iframe>
-                  <div style={{ marginTop: '0.5rem' }}>
-                    <button onClick={() => vote(s.id, 'up')}>👍 {s.upvotes}</button>{' '}
-                    <button onClick={() => vote(s.id, 'down')}>👎 {s.downvotes}</button>
-                  </div>
-                </div>
+          {suggestions.map((s) => (
+            <div key={s.id}>
+              <img src={s.image} alt={s.trackName} style={{ width: 64, height: 64 }} />
+              <strong>{s.trackName}</strong> by {s.artist}
+              <br />
+              <iframe
+                src={`https://open.spotify.com/embed/track/${s.trackId}`}
+                width="300"
+                height="80"
+                frameBorder="0"
+                allow="encrypted-media"
+                loading="lazy"
+              />
+              <div>
+                <button onClick={() => vote(s.id, 'up')}>👍 {s.upvotes}</button>
+                <button onClick={() => vote(s.id, 'down')}>👎 {s.downvotes}</button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </>
       )}
     </main>

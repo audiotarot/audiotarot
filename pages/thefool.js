@@ -86,15 +86,15 @@ export default function TheFool() {
 
         <h2>⬆️ Upright</h2>
         <p>
-          You are standing at the edge of something real. The Fool doesn’t need a map.
+          You are standing at the edge of something real. The Fool doesn&apos;t need a map.
           Just a pulse, a yes, and a reason to trust that the fall might become flight.
           Step toward the unknown because it stirs you, not because it makes sense.
         </p>
 
         <h2>⬇️ Reversed</h2>
         <p>
-          This isn’t freedom, but flailing. A refusal to listen, or a fear dressed up as
-          recklessness. When The Fool stumbles, it’s often because they mistook impulse
+          This isn&apos;t freedom, but flailing. A refusal to listen, or a fear dressed up as
+          recklessness. When The Fool stumbles, it&apos;s often because they mistook impulse
           for insight. Step back. Are you leaping for freedom, or out of fear of stillness?
         </p>
 
@@ -107,7 +107,7 @@ export default function TheFool() {
             fontStyle: 'italic',
           }}
         >
-          Trancin' round a field of joy<br />
+          Trancin&#39; round a field of joy<br />
           I change from girl to boy<br />
           Can you deliver fun from cruel?<br />
           Could you laugh at truth with a fool?<br />
@@ -137,8 +137,8 @@ export default function TheFool() {
 
         <h2>🌠 REFLECTION</h2>
         <p>
-          What if the risk isn’t falling, but staying exactly where you are? The Fool
-          knows every story begins with a step. You don't have to be ready, just willing.
+          What if the risk isn&apos;t falling, but staying exactly where you are? The Fool
+          knows every story begins with a step. You don&apos;t have to be ready, just willing.
         </p>
       </section>
 

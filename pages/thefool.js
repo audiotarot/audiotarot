@@ -65,7 +65,84 @@ export default function TheFool() {
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
-      <h1>The Fool</h1>
+      {/* Static content from Squarespace page */}
+      <section>
+        <h3>O. The Fool</h3>
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5a43db3ea9db09f77e907232/1540695253539-552A57S83RXTI6CSNFV0/thefool.jpg?format=1000w"
+          alt="silhouette of a person leaping between cliffs above the ocean at sunrise"
+          style={{ width: '100%', borderRadius: '8px' }}
+        />
+
+        <h2>🔑 Keywords</h2>
+        <p>
+          <strong>Sign:</strong> Aquarius • <strong>Planet:</strong> Uranus
+        </p>
+        <p>
+          new beginnings, sacred foolishness, leaps of faith, curiosity,
+          instinct, openness, risk, untethered, idealism, raw potential,
+          intuition over logic, freedom from expectation.
+        </p>
+
+        <h2>⬆️ Upright</h2>
+        <p>
+          You are standing at the edge of something real. The Fool doesn’t need a map.
+          Just a pulse, a yes, and a reason to trust that the fall might become flight.
+          Step toward the unknown because it stirs you, not because it makes sense.
+        </p>
+
+        <h2>⬇️ Reversed</h2>
+        <p>
+          This isn’t freedom, but flailing. A refusal to listen, or a fear dressed up as
+          recklessness. When The Fool stumbles, it’s often because they mistook impulse
+          for insight. Step back. Are you leaping for freedom, or out of fear of stillness?
+        </p>
+
+        <h2>🎵 Featured Lyric</h2>
+        <blockquote
+          style={{
+            borderLeft: '3px solid #666',
+            paddingLeft: '12px',
+            color: '#666',
+            fontStyle: 'italic',
+          }}
+        >
+          Trancin' round a field of joy<br />
+          I change from girl to boy<br />
+          Can you deliver fun from cruel?<br />
+          Could you laugh at truth with a fool?<br />
+          —Curved Air
+        </blockquote>
+
+        <h2>🎧 Spotify Playlist</h2>
+        <iframe
+          style={{ borderRadius: '12px' }}
+          src="https://open.spotify.com/embed/playlist/6SDEqI9bMngBcL6DKuWqBv?utm_source=generator"
+          width="100%"
+          height="152"
+          frameBorder="0"
+          allow="encrypted-media"
+        ></iframe>
+
+        <h2>🍎 Apple Music</h2>
+        <p>
+          <a
+            href="https://music.apple.com/us/playlist/0-the-fool/pl.u-XzjEt4L8KmL"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in Apple Music →
+          </a>
+        </p>
+
+        <h2>🌠 REFLECTION</h2>
+        <p>
+          What if the risk isn’t falling, but staying exactly where you are? The Fool
+          knows every story begins with a step. You don't have to be ready, just willing.
+        </p>
+      </section>
+
+      {/* Dynamic search and suggestions section */}
       {!session ? (
         <>
           <p>Please sign in to suggest songs.</p>

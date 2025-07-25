@@ -6,7 +6,7 @@ export default function TheFoolEmbed() {
 
   useEffect(() => {
     fetch('https://audiotarot-git-main-audiotarots-projects.vercel.app/api/suggestions')
-      .then((res) => res.json())
+      .then(r => r.json())
       .then(setSuggestions)
       .catch(console.error)
   }, [])
@@ -18,7 +18,7 @@ export default function TheFoolEmbed() {
       fontFamily: '"Courier New", Courier, monospace',
       padding: '2rem',
       maxWidth: '700px',
-      margin: '0 auto',
+      margin: '0 auto'
     }}>
       <h2>🎧 Community Suggestions for The Fool</h2>
       {suggestions.length === 0
@@ -28,7 +28,10 @@ export default function TheFoolEmbed() {
               <strong>{s.trackName}</strong> by {s.artist}<br/>
               <iframe
                 src={`https://open.spotify.com/embed/track/${s.trackId}`}
-                width="300" height="80" frameBorder="0" allow="encrypted-media" loading="lazy"
+                width="100%" height="80"
+                frameBorder="0"
+                allow="encrypted-media"
+                loading="lazy"
                 style={{ marginTop: '0.5rem' }}
               />
             </div>

@@ -8,8 +8,11 @@ export default function TheFoolEmbed() {
   const [results, setResults] = useState([])
   const [suggestions, setSuggestions] = useState([])
 
+  const BASE = 'https://audiotarot-git-main-audiotarots-projects.vercel.app'
+  const CALLBACK = encodeURIComponent(`${BASE}/embed/thefool`)
+
   useEffect(() => {
-    fetch('https://audiotarot-git-main-audiotarots-projects.vercel.app/api/suggestions')
+    fetch(`${BASE}/api/suggestions`)
       .then((res) => res.json())
       .then(setSuggestions)
       .catch(console.error)
@@ -18,7 +21,7 @@ export default function TheFoolEmbed() {
   const handleSearch = async () => {
     try {
       const res = await fetch(
-        `https://audiotarot-git-main-audiotarots-projects.vercel.app/api/search?q=${encodeURIComponent(query)}`
+        `${BASE}/api/search?q=${encodeURIComponent(query)}`
       )
       if (!res.ok) throw new Error('Search failed')
       const data = await res.json()
@@ -31,7 +34,7 @@ export default function TheFoolEmbed() {
   const handleSuggest = async (track) => {
     try {
       const res = await fetch(
-        'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/suggestions',
+        `${BASE}/api/suggestions`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -56,7 +59,7 @@ export default function TheFoolEmbed() {
   const vote = async (id, type) => {
     try {
       const res = await fetch(
-        'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/vote',
+        `${BASE}/api/vote`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -90,12 +93,12 @@ export default function TheFoolEmbed() {
         <>
           <p>Please sign in to suggest songs.</p>
           <button
-            onClick={() => {
+            onClick={() =>
               window.open(
-                'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/auth/signin/spotify?callbackUrl=https://audiotarot-git-main-audiotarots-projects.vercel.app/embed/thefool',
+                `${BASE}/api/auth/signin/spotify?callbackUrl=${CALLBACK}`,
                 '_blank'
               )
-            }}
+            }
             style={{
               background: '#000',
               color: '#fff',
@@ -125,9 +128,7 @@ export default function TheFoolEmbed() {
           {results.map((track) => (
             <div key={track.id} style={{ marginBottom: '0.5rem' }}>
               <strong>{track.name}</strong> by {track.artists[0].name}{' '}
-              <button onClick={() => handleSuggest(track)}>
-                Suggest
-              </button>
+              <button onClick={() => handleSuggest(track)}>Suggest</button>
             </div>
           ))}
 

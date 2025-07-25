@@ -1,6 +1,6 @@
 // pages/embed/thefool.js
 import React, { useState, useEffect } from 'react'
-import { useSession, signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
 export default function TheFoolEmbed() {
   const { data: session } = useSession()
@@ -8,7 +8,6 @@ export default function TheFoolEmbed() {
   const [results, setResults] = useState([])
   const [suggestions, setSuggestions] = useState([])
 
-  // fetch existing suggestions
   useEffect(() => {
     fetch('https://audiotarot-git-main-audiotarots-projects.vercel.app/api/suggestions')
       .then((res) => res.json())
@@ -16,13 +15,10 @@ export default function TheFoolEmbed() {
       .catch(console.error)
   }, [])
 
-  // search Spotify
   const handleSearch = async () => {
     try {
       const res = await fetch(
-        `https://audiotarot-git-main-audiotarots-projects.vercel.app/api/search?q=${encodeURIComponent(
-          query
-        )}`
+        `https://audiotarot-git-main-audiotarots-projects.vercel.app/api/search?q=${encodeURIComponent(query)}`
       )
       if (!res.ok) throw new Error('Search failed')
       const data = await res.json()
@@ -32,7 +28,6 @@ export default function TheFoolEmbed() {
     }
   }
 
-  // submit a suggestion
   const handleSuggest = async (track) => {
     try {
       const res = await fetch(
@@ -41,7 +36,7 @@ export default function TheFoolEmbed() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            cardSlug: 'the‑fool',      // keep this matched to your API
+            cardSlug: 'the-fool',
             trackId: track.id,
             trackName: track.name,
             artist: track.artists[0].name,
@@ -58,7 +53,6 @@ export default function TheFoolEmbed() {
     }
   }
 
-  // up/down vote
   const vote = async (id, type) => {
     try {
       const res = await fetch(
@@ -92,19 +86,26 @@ export default function TheFoolEmbed() {
     >
       <h2>🎧 Community Suggestions for The Fool</h2>
 
-{!session ? (
-  <>
-    <p>Please sign in to suggest songs.</p>
-    <button
-      onClick={() => {
-        window.open(
-          'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/auth/signin/spotify?callbackUrl=https://audiotarot-git-main-audiotarots-projects.vercel.app/embed/thefool',
-          '_blank'
-        )
-      }}
-    >
-      Sign in with Spotify
-    </button>
+      {!session ? (
+        <>
+          <p>Please sign in to suggest songs.</p>
+          <button
+            onClick={() => {
+              window.open(
+                'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/auth/signin/spotify?callbackUrl=https://audiotarot-git-main-audiotarots-projects.vercel.app/embed/thefool',
+                '_blank'
+              )
+            }}
+            style={{
+              background: '#000',
+              color: '#fff',
+              padding: '0.5rem 1rem',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Sign in with Spotify
+          </button>
         </>
       ) : (
         <>

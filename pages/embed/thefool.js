@@ -92,12 +92,19 @@ export default function TheFoolEmbed() {
     >
       <h2>🎧 Community Suggestions for The Fool</h2>
 
-      {!session ? (
-        <>
-          <p>Please sign in to suggest songs.</p>
-          <button onClick={() => signIn('spotify')}>
-            Sign in with Spotify
-          </button>
+{!session ? (
+  <>
+    <p>Please sign in to suggest songs.</p>
+    <button
+      onClick={() => {
+        window.open(
+          'https://audiotarot-git-main-audiotarots-projects.vercel.app/api/auth/signin/spotify?callbackUrl=https://audiotarot-git-main-audiotarots-projects.vercel.app/embed/thefool',
+          '_blank'
+        )
+      }}
+    >
+      Sign in with Spotify
+    </button>
         </>
       ) : (
         <>

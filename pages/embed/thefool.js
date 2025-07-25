@@ -1,6 +1,5 @@
-// pages/embed/thefool.js
 import React from 'react';
-import CommunitySuggestions from '@/components/CommunitySuggestions';
+import CommunitySuggestions from '../../components/CommunitySuggestions';
 
 export default function TheFoolEmbed() {
   return (
@@ -14,7 +13,7 @@ export default function TheFoolEmbed() {
     }}>
       <h2>🎧 Community Suggestions for The Fool</h2>
       <p>Submit your songs, sounds, or sonic visions for this card:</p>
-      <CommunitySuggestions cardSlug="thefool" />
+      <CommunitySuggestions cardSlug="the-fool" />
     </div>
   );
 }

@@ -1,22 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
   async headers() {
     return [
       {
-        source: '/embed/:path*',
-        headers: [
-          { key: 'X-Frame-Options', value: 'ALLOWALL' }
-        ]
-      },
-      {
         source: '/api/auth/:path*',
         headers: [
-          { key: 'X-Frame-Options', value: 'ALLOWALL' }
-        ]
-      }
-    ]
-  }
-}
-
-module.exports = nextConfig
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval'; connect-src 'self' https://api.spotify.com; style-src 'self' 'unsafe-inline';",
+          },
+        ],
+      },
+    ];
+  },
+};
